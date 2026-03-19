@@ -6,11 +6,13 @@ public abstract class Sprzet
     string Nazwa {get;set;}
     bool Dostepnosc {get;set;}
     float Wartosc {get;set;}
+    float CenaZaDzien {get;set;}
 
-    public Sprzet(string nazwa, bool dostepnosc, float wartosc)
+    public Sprzet(string nazwa, bool dostepnosc, float wartosc, float cenaZaDzien)
     {
         this.Nazwa = nazwa;
         this.Dostepnosc = dostepnosc;
         this.Wartosc = wartosc;
+        this.CenaZaDzien = cenaZaDzien;
     }
 }
