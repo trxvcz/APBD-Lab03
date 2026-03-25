@@ -1,17 +1,23 @@
 
 namespace APBD_Lab03.models.Users;
 
-public abstract class User(string Name,string Lastname,string phoneNumber,int rentalLimit)
+public abstract class User
 {
  
-    private Guid Id { get; set; }=  Guid.NewGuid();
-    private string Name { get; set; }
-    private string LastName { get; set; }
-    private string phoneNumber { get; set; }
-    private int rentalLimit { get; set; }
+    public Guid Id { get; set; }=  Guid.NewGuid();
+    public string Name { get; private set; }
+    public string LastName { get; private set; }
+    public string PhoneNumber { get; private set; }
     
     public abstract string UserType { get; }
     public abstract int MaxActiveRentals { get; }
+
+    protected User(string name, string lastname, string phoneNumber)
+    {
+        Name = name;
+        LastName = lastname;
+        PhoneNumber = phoneNumber;
+    }
     
     public override string ToString()
     {

@@ -2,11 +2,20 @@ namespace APBD_Lab03.models;
 
 public abstract class Hardware(string name)
 {
-    private Guid Id { get; set; } = Guid.NewGuid();
-    private string Name { get; set; } = name;
-    private bool IsAvailable { get; set; } = true;
-
-
+    public Guid Id { get;private set; } = Guid.NewGuid();
+    public string Name { get;private set; } = name;
+    public bool IsAvailable { get; private set; } = true;
+    
+    public void MarkAsRented()
+    {
+        IsAvailable = false;
+    }
+    
+    public void MarkAsReturned()
+    {
+        IsAvailable = true;
+    }
+    
     public override string ToString()
     {
         string status = IsAvailable ? "Dostępny" : "Niedostępny";
