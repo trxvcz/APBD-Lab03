@@ -2,7 +2,7 @@ using APBD_Lab03.models;
 
 namespace APBD_Lab03;
 
-public class Laptop(string name, int ramSizeGb, string processorModel) : Sprzet(name)
+public class Laptop(string name, int ramSizeGb, string processorModel) : Hardware(name)
 {
     private int RamSizeGb { get; set; } = ramSizeGb;
     private string ProcessorModel { get; set; } = processorModel;

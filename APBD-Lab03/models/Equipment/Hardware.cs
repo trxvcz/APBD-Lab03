@@ -1,6 +1,6 @@
 namespace APBD_Lab03.models;
 
-public abstract class Sprzet(string name)
+public abstract class Hardware(string name)
 {
     private Guid Id { get; set; } = Guid.NewGuid();
     private string Name { get; set; } = name;
