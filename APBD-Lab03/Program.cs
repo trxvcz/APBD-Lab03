@@ -1,6 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-using APBD_Lab03;
+﻿using APBD_Lab03;
 using APBD_Lab03.models;
 using APBD_Lab03.models.service;
 using APBD_Lab03.models.Users;
@@ -64,6 +62,36 @@ foreach (var rental in activeRentals)
     count++;
 }
 if (count == 0) Console.WriteLine("Brak aktywnych wypożyczeń.");
+
+var allHardware = new List<Hardware> { laptop1, laptop2, projector1, camera1 };
+
+Console.WriteLine("\nZgłoszono uszkodzenie MacBooka:");
+laptop2.MarkAsUnavailable();
+Console.WriteLine(laptop2);
+
+Console.WriteLine("\n dostępny sprzęt:");
+var availableHardware = allHardware.Where(h => h.IsAvailable);
+foreach (var hw in availableHardware)
+{
+    Console.WriteLine($"- {hw.Name} (Status: Dostępny)");
+}
+
+rentalService.RentEquipment(employee, projector1, days: 2);
+Console.WriteLine($"\nAktywne wypożyczenia użytkownika {employee.Name}:");
+var employeeRentals = rentalService.GetActiveRentalsForUser(employee);
+foreach (var rental in employeeRentals)
+{
+    Console.WriteLine($"- {rental.RentedHardware.Name} do {rental.DueDate.ToShortDateString()}");
+}
+
+Console.WriteLine("\nPrzeterminowane wypożyczenia (stan na za 14 dni):");
+DateTime futureDate = DateTime.Now.AddDays(14); 
+var overdueRentals = rentalService.GetOverdueRentals(futureDate);
+
+foreach (var rental in overdueRentals)
+{
+    Console.WriteLine($"- UWAGA! {rental.RentedBy.Name} przetrzymuje {rental.RentedHardware.Name} (Termin: {rental.DueDate.ToShortDateString()})");
+}
 
 Console.WriteLine("\nStan inwentarza:");
 Console.WriteLine(laptop1);

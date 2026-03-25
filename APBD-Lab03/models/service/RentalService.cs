@@ -51,4 +51,14 @@ public class RentalService
     {
         return _rentals.Where(r => r.IsActive);
     }
+    
+    public IEnumerable<Rental> GetActiveRentalsForUser(User user)
+    {
+        return _rentals.Where(r => r.IsActive && r.RentedBy.Id == user.Id);
+    }
+
+    public IEnumerable<Rental> GetOverdueRentals(DateTime checkDate)
+    {
+        return _rentals.Where(r => r.IsActive && r.DueDate > checkDate);
+    }
 }

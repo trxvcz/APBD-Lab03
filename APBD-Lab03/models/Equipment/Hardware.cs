@@ -16,6 +16,16 @@ public abstract class Hardware(string name)
         IsAvailable = true;
     }
     
+    public void MarkAsUnavailable()
+    {
+        IsAvailable = false;
+    }
+
+    public void MarkAsAvailable()
+    {
+        IsAvailable = true;
+    }
+    
     public override string ToString()
     {
         string status = IsAvailable ? "Dostępny" : "Niedostępny";
